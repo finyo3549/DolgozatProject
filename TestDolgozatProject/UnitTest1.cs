@@ -29,7 +29,10 @@ namespace TestDolgozatProject
             dolgozat.PontFelvesz(75);
             dolgozat.PontFelvesz(-1); // Diák nem írta meg a dolgozatot
 
-            Assert.IsTrue(dolgozat.MindenkiMegirta());
+            Assert.Throws<ArgumentException>(() => dolgozat.MindenkiMegirta());
+
+            Assert.Pass();
+
         }
 
         [Test]
@@ -39,7 +42,7 @@ namespace TestDolgozatProject
             dolgozat.PontFelvesz(85);
             dolgozat.PontFelvesz(70);
 
-            Assert.IsFalse(dolgozat.MindenkiMegirta());
+            Assert.IsTrue(dolgozat.MindenkiMegirta());
         }
         [Test]
         public void Bukas()
@@ -117,7 +120,7 @@ namespace TestDolgozatProject
             dolgozat.PontFelvesz(90);
             dolgozat.PontFelvesz(85);
             dolgozat.PontFelvesz(90);
-            Assert.IsFalse(dolgozat.Gyanus(6));
+            Assert.Throws<ArgumentException>(() => dolgozat.Gyanus(3));
         }
     }
     

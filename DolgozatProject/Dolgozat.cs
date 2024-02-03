@@ -25,7 +25,9 @@
 
         public bool MindenkiMegirta()
         {
-            return pontok.Any(pont => pont == -1);
+            if(pontok.Any(pont => pont == -1)) {
+                throw new ArgumentException("Nem mindenki írta meg a dolgozatot");
+            } else return true;
         }
 
         public int Bukas
@@ -112,11 +114,14 @@
         {
             if (kivalok < 0)
             {
-                throw new ArgumentException("Érvénytelen paraméter. A kiváló tanulók számának nem lehet negatív.");
+                throw new ArgumentException("A kiváló tanulók száma nem lehet negatív.");
             }
 
             int jelesek = pontok.Count(pont => pont > 80);
-            return jelesek > kivalok;
+            if (jelesek > kivalok) {
+                throw new ArgumentException("Gyanúsan sok kiváló!!!");
+            }
+            return false;
         }
 
         public bool Ervenytelen
